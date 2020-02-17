@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import TMDB from './TMDB';
+import FilmListing from './FilmListing';
+import FilmDetails from './FilmDetails';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+
+  // Reading TMDB file and save it in state
+  constructor(props){
+    super(props);
+
+    this.state = {
+      tmdbFilms: TMDB.films
+    };
+  };
+
+  render() {
+    return ( 
+      <div className = "film-library" >
+        {/* Calling components and passing imported films as props */}
+        <FilmListing films={this.state.tmdbFilms} />
+        <FilmDetails films={this.state.tmdbFilms} />
+      </div>
+    );
+  };
 }
-
-export default App;
