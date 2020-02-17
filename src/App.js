@@ -1,6 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import FilmListing from './FilmListing';
+import FilmDetails from './FilmDetails';
+import TMDB from './TMDB'
 
 function App() {
   return (
@@ -19,7 +22,11 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
+   
+  <div className="film-library">
+  <FilmListing films={TMDB} /> 
+  <FilmDetails films={TMDB} /> 
+  </div>
   );
 }
 
