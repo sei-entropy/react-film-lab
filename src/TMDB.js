@@ -1,5 +1,7 @@
+
+
 const TMDB = {
-  api_key: '<REPLACE_THIS_WITH_TMDB_API_KEY>',
+  api_key: '',
   films: [
     {
       "id": 346364,
@@ -75,5 +77,6 @@ const TMDB = {
     }
   ]
 }
+
 
 export default TMDB;
