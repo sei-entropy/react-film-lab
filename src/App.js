@@ -7,8 +7,8 @@ import TMDB from './TMDB';
 function App() {
   return (
     <div className="film-library">
-    <FilmListing movies={TMDB}/>
-    <FilmDetails movies={TMDB}/>
+    <FilmListing movie={TMDB}/>
+    <FilmDetails movie={TMDB}/>
    </div>
 )};
 
