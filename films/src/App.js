@@ -25,7 +25,7 @@ function App() {
       </header>
     </div>);
 }
-class app extends React.Component{
+class App extends React.Component{
 render(){
     return ( <div className = "film-library" >
               <filmList film={TMBD.films} />
@@ -33,4 +33,4 @@ render(){
               
 
  </div>
-      );}}export default app;
+      );}}export default App;
