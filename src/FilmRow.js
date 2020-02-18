@@ -5,6 +5,9 @@ import FilmPoster from "./FilmPoster";
 import Fave from "./Fave";
 
 export default class FilmRow extends Component {
+  handleDetailsClick(film){
+    console.log(`Fetching details for ${film.title}`)
+}
   render() {
     // Declaring variables to hold the props
     // Create the Url for the poster
@@ -20,19 +23,22 @@ export default class FilmRow extends Component {
      
       // Create a main div holding each row
       <div className="film-row">
+        <div className="film-row" onClick={()=>this.handleDetailsClick(title)}>
+          
         {/* Create a child component holding the poster, 
         and passing the image and title as props */}
         <FilmPoster posterUrl={posterUrl} title={title} />
 
         {/* Create a div about the movie summary containing the title
         and release year */}
-        <div className="film-summary">
-            <Fave />
+        <div className="film-summary">  
           <h1>{title}</h1>
-
           <p>{releaseYear}</p>
+          </div>
+          <Fave />
         </div>
       </div>
+      
     );
   }
 }
