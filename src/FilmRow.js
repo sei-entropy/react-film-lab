@@ -8,7 +8,7 @@ import TMDB from './TMDB'
 export default class FilmRow extends Component {
 
     handleFilterClick = (film) => {
-        const text = this.props.title
+        const text = this.props.film.title
 
 
         console.log(text)
