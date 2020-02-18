@@ -6,21 +6,14 @@ import FilmDetails from './FilmDetails';
 
 export default class App extends React.Component {
 
-  // Reading TMDB file and save it in state
-  constructor(props){
-    super(props);
-
-    this.state = {
-      tmdbFilms: TMDB.films
-    };
-  };
-
   render() {
+    // Reading tmdb films
+    const tmdbFilms = TMDB.films;
     return ( 
       <div className = "film-library" >
         {/* Calling components and passing imported films as props */}
-        <FilmListing films={this.state.tmdbFilms} />
-        <FilmDetails films={this.state.tmdbFilms} />
+        <FilmListing films={tmdbFilms} />
+        <FilmDetails films={tmdbFilms} />
       </div>
     );
   };
