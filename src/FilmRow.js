@@ -1,29 +1,39 @@
 import React from 'react';
 import FilmPoster from './FilmPoster';
+import Fave from './Fave';
 
 
-export default class FilmRow extends React.Component{
+export default class FilmRow extends React.Component {
 
-render(){
 
-        const year = new Date (this.props.film.release_date);
-    return(
+    handleDetailsClick = (film) => {
 
-        <div className='film-row'>
+        console.log('Fetching details for' + film);
+    }
 
-            < FilmPoster film={this.props.film} />
+    render() {
 
-            <div className='film-summary'>
+        const year = new Date(this.props.film.release_date);
+        return (
 
-    <h1>{this.props.film.title}</h1>
+            <div className='film-row' onClick={() => this.handleDetailsClick('this.props.film.title')}>
 
-    <p>{year.getFullYear()}</p>
+                < FilmPoster film={this.props.film} />
+
+                <div className='film-summary'>
+
+                    <Fave />
+
+
+                    <h1>{this.props.film.title}</h1>
+
+                    <p>{year.getFullYear()}</p>
+
+                </div>
 
             </div>
 
-        </div>
-
-    )
-}
+        )
+    }
 
 }

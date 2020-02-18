@@ -11,11 +11,15 @@ export default class App extends React.Component {
 
   render() {
 
+
+
     return (
       <div className="film-library">
-      <FilmListing movies={TMDB} />
-    <FilmDetails movies={TMDB} />
-      
+        <FilmListing movies={TMDB} />
+        <FilmDetails movies={TMDB} />
+
+        {/*     <Fave onChange={this.Simplylog} />
+ */}
       </div>
 
     );
