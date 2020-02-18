@@ -1,33 +1,25 @@
-import React from 'react';
-import FilmListing from './FilmListing';
-import FilmDetails from './FilmDetails';
-import TMDB from './TMDB';
+import React from "react";
+// import the child components
+import FilmListing from "./FilmListing";
+import FilmDetails from "./FilmDetails";
 
+// import the film database
+import TMDB from "./TMDB";
+// import the style
+import "./App.css";
 
+function App() {
+  return (
+    // Create a div to hold the film library
+    <div className="film-library">
+      {/* Add the two child components and pass the films
+       from the database as props */}
 
-export default class App extends React.Component{
-  constructor(props){
-    super(props);
-    console.log(TMDB.films);
-  
-  }
- 
-  render(){
-   
-  
+      <FilmListing films={TMDB.films} />
 
-    return (<div className="film-library">
-    <div>
-      <FilmListing/>
+      <FilmDetails films={TMDB.films} />
     </div>
-    
-    <div>
-      <FilmDetails/>
-    </div>
-  
-    
-  </div>);
-  }
+  );
 }
 
-
+export default App;
