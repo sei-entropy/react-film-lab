@@ -2,6 +2,7 @@ import React from "react";
 import FilmList from "./FilmList";
 import FilmDetails from "./FilmDetails";
 import TMDB from "./TMDB";
+import Fave from "./Fave";
 
 import "./App.css";
 
