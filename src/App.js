@@ -1,14 +1,22 @@
 import React from "react";
-import FilmList from "./FilmList";
+// import the child components
+import FilmListing from "./FilmListing";
 import FilmDetails from "./FilmDetails";
-import TMDB from "./TMDB";
 
+// import the film database
+import TMDB from "./TMDB";
+// import the style
 import "./App.css";
 
 function App() {
   return (
+    // Create a div to hold the film library
     <div className="film-library">
-      <FilmList films={TMDB.films} />
+      {/* Add the two child components and pass the films
+       from the database as props */}
+
+      <FilmListing films={TMDB.films} />
+
       <FilmDetails films={TMDB.films} />
     </div>
   );
