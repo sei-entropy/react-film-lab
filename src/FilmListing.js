@@ -14,6 +14,7 @@ export default class FilmList extends Component {
     const allFilms = this.props.films.map((film, index) => (
       <FilmRow key={film.id} getImg={getImg} film={film} />
     ));
+
     return (
       // Main div for the film listing, with films h1 tag under it
       <div className="film-list">

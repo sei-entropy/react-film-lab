@@ -25,6 +25,7 @@ export default class FilmRow extends Component {
         and release year */}
         <div className="film-summary">
           <h1>{title}</h1>
+
           <p>{releaseYear}</p>
         </div>
       </div>
