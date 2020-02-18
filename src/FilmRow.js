@@ -5,6 +5,7 @@ import FilmPoster from './FilmPoster'
 export default class FilmRow extends React.Component {
     render() {
         const years = new Date(this.props.film.release_date)
+        console.log(years)
 
         return (
             <div className="film-row">
@@ -12,6 +13,7 @@ export default class FilmRow extends React.Component {
            <FilmPoster posterPath={this.props.film.poster_path} />
 
                 <div className="film-summary">
+              
                     <h1>{this.props.film.title}</h1>
                     <p>{years.getFullYear()}</p>
                 </div>
