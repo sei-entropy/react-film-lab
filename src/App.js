@@ -7,13 +7,9 @@ export default class App extends React.Component {
 
     return (
 < div className = "film-library" >
- 
-  
-{/* <FilmListing film={this.props.film.title}/> */}
-{/* <h1>{allFilms}</h1> */}
-<FilmListing MyFilms={TMDB.films}/>
-<FilmDetails Myfilm={TMDB}/>
-</ div>
+<FilmListing Film={TMDB.films}/>
+<FilmDetails film={TMDB}/>
+</div>
     )}
     
 }
