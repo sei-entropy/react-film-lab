@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-// import filmPost child component
+// import FilmPost, Fave child components
 import FilmPoster from "./FilmPoster";
 import Fave from "./Fave";
 
 export default class FilmRow extends Component {
+  handleDetailsClick(film) {
+    console.log(`Fetching details for ${film.title}`);
+  }
+
   render() {
     // Declaring variables to hold the props
     // Create the Url for the poster
