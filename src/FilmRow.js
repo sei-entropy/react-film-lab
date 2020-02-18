@@ -21,7 +21,10 @@ export default class FilmRow extends Component {
 
     return (
       // Create a main div holding each row
-      <div className="film-row">
+      <div
+        className="film-row"
+        onClick={() => this.handleDetailsClick(this.props.film)}
+      >
         {/* Create a child component holding the poster, 
         and passing the image and title as props */}
         <FilmPoster posterUrl={posterUrl} title={title} />
