@@ -4,10 +4,12 @@ import React, { Component } from "react";
 
 import FilmPoster from "./FilmPoster";
 
+import Fave from './Fave';
+
 
 
 export default class FilmRow extends Component {
-
+  
   render() {
 
     // Declaring variables to hold the props
@@ -49,6 +51,7 @@ export default class FilmRow extends Component {
         and release year */}
 
         <div className="film-summary">
+            <Fave />
 
           <h1>{title}</h1>
 
