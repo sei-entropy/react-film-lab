@@ -1,7 +1,7 @@
 import React from "react";
-import FilmList from "./FilmList.jsx";
-import FilmDetails from "./FilmDetails.jsx";
-import TMDB from "./TMDB.jsx";
+import FilmList from "./FilmList";
+import FilmDetails from "./FilmDetails";
+import TMDB from "./TMDB";
 
 import "./App.css";
 

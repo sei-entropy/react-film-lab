@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FilmPoster from "./FilmPoster.jsx";
+import FilmPoster from "./FilmPoster";
 
 export default class FilmRow extends Component {
   render() {
