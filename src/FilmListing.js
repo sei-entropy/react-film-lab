@@ -16,7 +16,7 @@ export default class FilmList extends Component {
     //  it creates components by mapping through the films array from
     //  props then pass the props to FilmRow Child component
     const allFilms = this.props.films.map((film, index) => (
-      <FilmRow key={film.id} getImg={getImg} film={film} />
+      <FilmRow film={film} key={film.id} getImg={getImg} />
     ));
 
     return (
