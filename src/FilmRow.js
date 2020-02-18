@@ -8,7 +8,7 @@ export default class FilmRow extends React.Component {
 
         return (
             <div className="film-row">
-                ${this.props.posterPath}
+               
            <FilmPoster posterPath={this.props.film.poster_path} />
 
                 <div className="film-summary">
