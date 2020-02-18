@@ -3,8 +3,11 @@ import FilmRow from './film-row';
 
 export default class FilmList extends React.Component{
     render(){
-     let allFilms = this.props.films.map(function(film,index){
-            return <FilmRow title={film.title} key={index} />
+        const getImg = "https://image.tmdb.org/t/p/w780";
+
+     let allFilms = this.props.films.map(function(film){
+            return  <FilmRow film={film} getImg={getImg} key={film.id} />
+                       
         })
     
         return(
