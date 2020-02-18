@@ -15,6 +15,7 @@ export default class App extends React.Component {
         <div className="film-list">
           <h1 className="section-title">FILMS</h1>
           <FilmListing list={TMDB.films} />
+          
 
         </div>
         <FilmDetails />
