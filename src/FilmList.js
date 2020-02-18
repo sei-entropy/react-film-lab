@@ -6,18 +6,21 @@ export default class FilmList extends Component {
   constructor(props) {
     super(props);
 
-    //
     this.state = {
-      filmsToDisplay: this.props.fruits
+      filter: "all"
     };
   }
 
   handleFilterClick = faves => {
-    // const filteredFilmList =
     console.log(faves);
-    // function(faves) {
-    //   return console.log(faves);
-    // };
+
+    const filteredFilmList = this.props.faves.filter(function(film) {
+      return film.includes("faves");
+    });
+
+    this.setState({
+      filter: filteredFilmList
+    });
   };
 
   // handleFilterClick = faves => {
@@ -29,6 +32,7 @@ export default class FilmList extends Component {
   // };
 
   render() {
+    const filter = this.state.filter ? "all" : "faves";
     const allFilms = this.props.films.map((film, index) => (
       <FilmRow
         filmTitle={film.title}
@@ -44,14 +48,14 @@ export default class FilmList extends Component {
         <h1 className="section-title">FILMS</h1>
         <div className="film-list-filters">
           <div
-            onClick={() => this.handleFilterClick("all")}
+            onClick={() => this.handleFilterClick()}
             className="film-list-filter"
           >
             ALL
             <span className="section-count">{this.props.films.length}</span>
           </div>
           <div
-            onClick={() => this.handleFilterClick("faves")}
+            onClick={() => this.handleFilterClick()}
             className="film-list-filter"
           >
             FAVES
