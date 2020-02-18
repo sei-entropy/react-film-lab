@@ -8,7 +8,7 @@ export default class FilmList extends Component {
         filmTitle={film.title}
         release_date={film.release_date}
         backdropUrl={film.backdrop_path}
-        id={film.id}
+        key={film.id}
         overview={film.overview}
         poster_path={"https://image.tmdb.org/t/p/w780" + film.poster_path}
       />
