@@ -1,17 +1,15 @@
 import React from "react";
-import FilmListing from "./FilmListing";
+import FilmList from "./FilmList";
 import FilmDetails from "./FilmDetails";
-import { TMDB } from "./TMDB";
-import logo from "./logo.svg";
+import TMDB from "./TMDB";
+
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <div className="film-library">
-        <FilmListing list={TMDB.films} />
-        <FilmDetails />
-      </div>
+    <div className="film-library">
+      <FilmList films={TMDB.films} />
+      <FilmDetails films={TMDB.films} />
     </div>
   );
 }

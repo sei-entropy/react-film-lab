@@ -1,14 +1,21 @@
-import React from "react";
-import { TMDB } from "./TMDB";
-export default class FilmRow extends React.Component {
-  render() {
-    let allFilms = TMDB.films.map((film, index) => <h1>{film.title}</h1>);
-    return <div className="film-list"></div>;
-  }
-}
+import React, { Component } from "react";
+import FilmPoster from "./FilmPoster";
 
-export default class Comments extends React.Component {
+export default class FilmRow extends Component {
   render() {
-    return <p>{this.props.message}</p>;
+    const posterUrl = this.props.poster_path;
+    const title = this.props.filmTitle;
+    const releaseDate = new Date(this.props.release_date);
+    const releaseYear = releaseDate.getFullYear();
+    return (
+      <div className="film-row">
+        <FilmPoster posterUrl={posterUrl} title={title} />
+
+        <div className="film-summary">
+          <h1>{title}</h1>
+          <p>{releaseYear}</p>
+        </div>
+      </div>
+    );
   }
 }
