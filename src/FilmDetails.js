@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 
-class FilmDetails extends Component{
+export default class FilmDetails extends React.Component{
     render(){
         return(
             <div className="film-details">
@@ -10,4 +10,3 @@ class FilmDetails extends Component{
         );
     }
 }
-export default FilmDetails;
