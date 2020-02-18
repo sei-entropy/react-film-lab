@@ -11,9 +11,9 @@ class App extends React.Component{
     <div className="film-library">
 
   <div className="film-list">
-  <FilmListing  filmTital={TMDB.films}/>
+  
      <h1 className="section-title">FILMS</h1>
-     
+     <FilmListing  filmTital={TMDB.films}/> 
      
   </div>
 
