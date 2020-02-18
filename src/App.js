@@ -3,6 +3,7 @@ import './App.css';
 import FilmListing from "./FilmListing";
 import FilmDetails from "./FilmDetails";
 import TMDB from "./TMDB";
+import Fave from './Fave.js';
 
 function App() {
   return (
