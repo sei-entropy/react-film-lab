@@ -1,0 +1,9 @@
+Before starting your app / App Structure;
+
+1. components
+   - ~ App (container)
+     -FilmListing
+        -FilmRow
+          -FilmPoster
+     -FilmDetails
+        
