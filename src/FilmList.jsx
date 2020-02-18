@@ -3,7 +3,7 @@ import FilmRow from "./FilmRow";
 
 export default class FilmList extends Component {
   render() {
-    let allFilms = this.props.films.map((film, index) => (
+    const allFilms = this.props.films.map((film, index) => (
       <FilmRow
         filmTitle={film.title}
         release_date={film.release_date}
