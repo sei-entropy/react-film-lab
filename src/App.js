@@ -13,9 +13,8 @@ export default class App extends React.Component {
 
     return (
       <div className="film-library">
-    
-    <FilmDetails movies={TMDB} />
       <FilmListing movies={TMDB} />
+    <FilmDetails movies={TMDB} />
       
       </div>
 
