@@ -17,9 +17,12 @@ isFave:!this.state.isFave,
               }
   render() {
     const isFave = (this.state.isFave)?'remove_from_queue':'add_to_queue';
-    // ()=> this.handleFilterClick('all')}>
+
     return (
-      <div className="film-row-fave add_to_queue" onClick={this.handleClick}>
+        // <div className={`film-list-filter  ${this.state.filter === 'fave' ? 'is-active' : ''}`} onClick={() => this.handleFilterClick('fave')} >
+
+          <div className={`film-row-fave add_to_queue ${isFave}`} onClick={this.handleClick}>
+
         <p className="material-icons" >add_to_queue</p>
       </div>
     );
