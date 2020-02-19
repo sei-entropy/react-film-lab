@@ -1,13 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-export default class FilmPoster extends Component {
-  render() {
-    return (
-      //  main div for the image, it gets the information
-      //  from the parent props
-      <div>
-        <img src={this.props.posterUrl} alt={this.props.title} />
-      </div>
-    );
-  }
+class FilmPoster extends Component{
+    render(){
+        return(
+            <img src={`https://image.tmdb.org/t/p/w780/${this.props.film.poster_path}`} alt="" />
+        )
+    }
 }
+
+export default FilmPoster; 
