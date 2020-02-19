@@ -88,11 +88,13 @@ figure {
 
 .film-summary {
   padding: 0.5em 1.5em;
+  text-align: center;
   background-color: white;
 }
 
 .film-summary > h1 {
   margin-bottom: 0.35em;
+  
 }
 
 .film-summary > p {
@@ -100,6 +102,7 @@ figure {
   line-height: 1.35;
   font-weight: 200;
   margin-top: 0;
+  color: #777;
 }
 
 .section-title {
