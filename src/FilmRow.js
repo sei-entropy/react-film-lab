@@ -4,19 +4,21 @@ import Fave from "./Fave";
 export default class FilmRow extends React.Component {
   handleDetailsClick = (film)=> {
 
-    console.log("Fetching details for : " + film);
+    console.log("Fetching details for : " + film.title);
   };
   render() {
-    const year = new Date(this.props.Film.release_date).getFullYear();
+    const year = new Date(this.props.film.release_date).getFullYear();
     return (
-      <div className="film-row" onClick={ () => this.handleDetailsClick(this.props.Film.title)}>
-        <Filmposter poster={this.props.Film} />
+      // onClick={ () => this.handleDetailsClick(this.props.Film.title)}
+      <div className="film-row" onClick={ () => this.handleDetailsClick(this.props.film)}>
+        <Filmposter poster={this.props.film} />
         <div className="film-summary">
+          {/* <Fave onFaveToggle = {this.props.onFaveToggle} isFave = {this.props.isFave}/> */}
           {/* Film from  return <FilmRow Film = {film} key = {index} /> */}
-          <h1>{this.props.Film.title}</h1>
+          <h1>{this.props.film.title}</h1>
           <p>{year}</p>
         </div>
-        <Fave />
+        <Fave onFaveToggle = {this.props.onFaveToggle} isFave = {this.props.isFave}/>
       </div>
     );
   }
