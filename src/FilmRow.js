@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import filmPost child component
 import FilmPoster from "./FilmPoster";
+import Fave from "./favorite";
 
 export default class FilmRow extends Component {
   render() {
@@ -28,6 +29,7 @@ export default class FilmRow extends Component {
 
           <p>{releaseYear}</p>
         </div>
+        <Fave/>
       </div>
     );
   }
