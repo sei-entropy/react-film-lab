@@ -1,23 +1,23 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import FilmDetails from "./FilmDetails";
+// import the child components
 import FilmListing from "./FilmListing";
-import FilmRow from "./FilmRow";
+import FilmDetails from "./FilmDetails";
+
+// import the film database
+import TMDB from "./TMDB";
+// import the style
+import "./App.css";
 
 function App() {
   return (
+    // Create a div to hold the film library
     <div className="film-library">
-      <div className="film-list">
-        <h1 className="section-title">FILMS</h1>
+      {/* Add the two child components and pass the films
+       from the database as props */}
 
-        <FilmListing />
-        <FilmRow />
-      </div>
+      <FilmListing films={TMDB.films} />
 
-      <div className="film-details">
-        <h1 className="section-title">DETAILS</h1>
-      </div>
+      <FilmDetails films={TMDB.films} />
     </div>
   );
 }

@@ -1,8 +1,13 @@
-import React from "react";
-import TMDB from "./TMDB";
+ 
+import React, { Component } from "react";
 
-export default class Filmdetails extends React.Component {
+export default class FilmDetails extends Component {
   render() {
-    return <h1>hi</h1>;
+    return (
+      // Main div for the film details
+      <div className="film-details">
+        <h1 className="section-title">DETAILS</h1>
+      </div>
+    );
   }
 }
