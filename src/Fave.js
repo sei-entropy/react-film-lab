@@ -23,7 +23,7 @@ isFave:!this.state.isFave,
 
           <div className={`film-row-fave add_to_queue ${isFave}`} onClick={this.handleClick}>
 
-        <p className="material-icons" >add_to_queue</p>
+        <p className="material-icons" >{isFave}</p>
       </div>
     );
   }
