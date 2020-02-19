@@ -7,7 +7,7 @@ export default class Fave extends Component {
       }
       handleClick() {
        console.log('handling Fave click!');
-       
+
       }
   render() {
     return (

@@ -3,6 +3,14 @@ import React, { Component } from "react";
 import FilmRow from "./FilmRow";
 
 export default class FilmList extends Component {
+  constructor(props) {
+    super(props);
+    this.handleFilterClick = this.handleFilterClick.bind(this);
+
+  }
+  handleFilterClick(filter) {
+   console.log('handling Setting filter to click!',filter);
+  }
   render() {
     //  Create a constant variable holding the pre-string
     //  for the database image url
@@ -18,10 +26,21 @@ export default class FilmList extends Component {
     return (
       // Main div for the film listing, with films h1 tag under it
       <div className="film-list">
-        <h1 className="section-title">FILMS</h1>
-        {/* All films components array */}
-        {allFilms}
+      <h1 className="section-title">FILMS</h1>
+      <div className="film-list-filters">
+          <div className="film-list-filter">
+              ALL
+              <span className="section-count">{this.props.films.length}</span>
+          </div>
+          <div className="film-list-filter">
+              FAVES
+              <span className="section-count" >0</span>
+              
+          </div>
       </div>
+  
+      {allFilms}
+  </div>
     );
   }
 }
