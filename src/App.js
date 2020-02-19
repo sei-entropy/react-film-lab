@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+  
+import React from "react";
+// import the child components
+import FilmListing from "./FilmListing";
+import FilmDetails from "./FilmDetails";
+
+// import the film database
+import TMDB from "./TMDB";
+// import the style
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    // Create a div to hold the film library
+    <div className="film-library">
+      {/* Add the two child components and pass the films
+       from the database as props */}
+
+      <FilmListing films={TMDB.films} />
+
+      <FilmDetails films={TMDB.films} />
     </div>
   );
 }
-
 export default App;
