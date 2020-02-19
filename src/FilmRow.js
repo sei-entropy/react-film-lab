@@ -1,5 +1,6 @@
 import React from 'react'
 import FilmListing from "./Film-list";
+import Fave from "./Fave";
 import FilmPoster from "./FilmPoster";
 
 export default class FilmRow extends React.Component{
@@ -7,11 +8,14 @@ export default class FilmRow extends React.Component{
         super(props);
 
     }
+    handleDetailsClick = (film) => {
+        console.log("Fetching details for",film)
+    };
 render() {
 
             const year = new Date(this.props.films.release_date);
     return (
-        <div className="film-row">
+        <div onClick={()=>this.handleDetailsClick(this.props.films.title)} className="film-row">
 
             <FilmPoster films={this.props.films}></FilmPoster>
             <div className="film-summary">
@@ -19,6 +23,7 @@ render() {
                 <p>{year.getFullYear()}</p>
 
             </div>
+                    <Fave></Fave>
         </div>
     );
 }
