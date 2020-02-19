@@ -1,14 +1,18 @@
 import React from 'react';
- import FilmPoster from './film-poster';
+import FilmPoster from './film-poster';
+import Fave from './fave'
 
 export default class FilmRow extends React.Component{
     
-    render(){
-       
-       const posterUrl = this.props.getImg + this.props.film.poster_path;
+     handleDetailsClick (film){
+           return console.log('Fetching details for ' + this.props.film.title)
+       };
 
+    render(){
+       const posterUrl = this.props.getImg + this.props.film.poster_path;
+      
         return(
-            <div className="film-row">
+            <div className="film-row" onClick={()=>this.handleDetailsClick()}>
               {/* <img src={'https://image.tmdb.org/t/p/w780/' +this.props.film.poster_path} alt="" /> */}
               <FilmPoster  posterUrl={posterUrl} title={this.props.film.title}/>
               <div className="film-summary">
@@ -16,6 +20,10 @@ export default class FilmRow extends React.Component{
                  <p>{new Date(this.props.film.release_date).getFullYear()}</p>
                  
               </div>
+              <div>
+              <Fave />
+              </div>
+              
             </div>
         )
     }
