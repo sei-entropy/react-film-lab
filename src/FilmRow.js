@@ -17,7 +17,8 @@ class FilmRow extends React.Component{
                     <img src={`https://image.tmdb.org/t/p/w780/${this.props.film.poster_path}`} alt="" />
          
                    <div className="film-summary">
-                       <Fave />
+                       <Fave  onFaveToggle={this.props.onFaveToggle} isFave={this.props.isFave}
+                       />
                        <h1>{this.props.film.title}</h1>
                       <p>{year}</p>
                   </div>
