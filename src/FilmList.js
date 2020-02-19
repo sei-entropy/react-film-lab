@@ -11,15 +11,11 @@ export default class FilmList extends Component {
     };
   }
 
-  handleFilterClick = faves => {
-    console.log(faves);
-
-    const filteredFilmList = this.props.faves.filter(function(film) {
-      return film.includes("faves");
-    });
+  handleFilterClick = filter => {
+    console.log(filter);
 
     this.setState({
-      filter: filteredFilmList
+      filter: filter
     });
   };
 
@@ -32,7 +28,14 @@ export default class FilmList extends Component {
   // };
 
   render() {
+    // const getImg = "https://image.tmdb.org/t/p/w780";
+
     const filter = this.state.filter ? "all" : "faves";
+
+    // const allFilms = this.props.films.map((film, index) => (
+    //   <FilmRow film={film} key={film.id} getImg={getImg} />
+    // ));
+
     const allFilms = this.props.films.map((film, index) => (
       <FilmRow
         filmTitle={film.title}
@@ -48,21 +51,25 @@ export default class FilmList extends Component {
         <h1 className="section-title">FILMS</h1>
         <div className="film-list-filters">
           <div
-            onClick={() => this.handleFilterClick()}
-            className="film-list-filter"
+            className={`film-list-filter ${
+              this.state.filter === "all" ? "is-active" : ""
+            }`}
+            onClick={() => this.handleFilterClick("all")}
           >
             ALL
             <span className="section-count">{this.props.films.length}</span>
           </div>
           <div
-            onClick={() => this.handleFilterClick()}
-            className="film-list-filter"
+            onClick={() => this.handleFilterClick("faves")}
+            className={`film-list-filter ${
+              this.state.filter === "faves" ? "is-active" : ""
+            }`}
           >
             FAVES
             <span className="section-count">0</span>
           </div>
         </div>
-
+        {/* All films FilmRow components array */}
         {allFilms}
       </div>
     );
