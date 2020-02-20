@@ -11,11 +11,11 @@ export default class FilmRow extends React.Component {
                 <h1>{this.props.title}</h1>
                 <p>{movieYear.getFullYear()}</p>
             </div>
-            <Fave/>
+            <Fave onFaveToggle={this.props.onFaveToggle} isFave={this.props.isFave}/>
         </div>;
     }
 
     handleDetailsClick = (film) => {
         console.log('Fetching details for', film);
-    }
+    };
 }
