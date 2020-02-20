@@ -22,12 +22,7 @@ export default class FilmListing extends React.Component{
   }
 
     render(){
-    // const allFilms = this.props.filmsList.map(function(film){
-    //     return <FilmRow image={film.poster_path} title={film.title} 
-    //     date={film.release_date} 
-        
-    //     key={film.id} />   
-    // })
+  
     const allFilms = this.props.films.map((film) => {
       return (
       <FilmRow

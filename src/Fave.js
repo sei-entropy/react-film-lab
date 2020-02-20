@@ -1,25 +1,12 @@
 import React from 'react';
 
 export default class Fave extends React.Component{
-  // constructor(props){
-  //   super(props);
-
-  //   this.state = {
-  //     // isFave: false
-  //   };
-
-  // }
-
-
      handleClick =(e)=>{
         e.stopPropagation();  
         console.log("handling Fave click!");
         
         this.props.onFaveToggle()
 
-        // this.setState({
-        //   isFave: !this.state.isFave
-        // })
        }
        
     render(){

@@ -16,18 +16,7 @@ export default class App extends React.Component{
          this.handleFaveToggle = this.handleFaveToggle.bind(this);
 
     }
-    // handleSearchChange = (e) => {
-    //     const textValue = e.target.value;
     
-    //     const filteredFruitList = this.props.fruits.filter(function(fruit) {
-    //       return fruit.toLowerCase().includes(textValue.toLowerCase());
-    //     });
-    
-    //     this.setState({
-    //       searchstate:textValue,
-    //       fruitsToDisplay: filteredFruitList,
-    //     })
-    //   }
     handleFaveToggle = (e) => {
        console.log(e);
     const faves=Array.prototype.slice.call(this.state.faves)
