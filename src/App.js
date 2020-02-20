@@ -12,11 +12,10 @@ class App extends Component {
             films: TMDB.films,
             current: {},
             faves: [],
-            filter: 'all',
         };
 
         this.handleFaveToggle = this.handleFaveToggle.bind(this);
-        this.handleFilterClick = this.handleFilterClick.bind(this);
+        this.handleDetailsClick = this.handleDetailsClick.bind(this);
     }
 
     handleFaveToggle = (film) => {
@@ -34,21 +33,20 @@ class App extends Component {
         this.setState({faves});
     };
 
-    handleFilterClick = (filter)  => {
+    handleDetailsClick = (film) => {
+        console.log(film, 'clicked for details');
         this.setState({
-            filter: filter,
-        });
-        console.log('Setting filter to', filter);
+            current: film,
+        })
     };
-
 
     render() {
         return (
             <div className="App" >
                 <div className="film-library">
                     <FilmListing films={this.state.films} faves={this.state.faves} onFaveToggle={this.handleFaveToggle}
-                        handleFilterClick={this.handleFilterClick} filter={this.state.filter}/>
-                    <FilmDetails films={this.state.current} />
+                        handleDetailsClick={this.handleDetailsClick}/>
+                    <FilmDetails films={this.state.current} film={this.state.current}/>
                 </div>
             </div>
         );

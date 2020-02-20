@@ -5,7 +5,7 @@ import Fave from "./Fave";
 export default class FilmRow extends React.Component {
     render() {
         const movieYear = new Date(this.props.year);
-        return <div className="film-row" onClick={() => this.handleDetailsClick(this.props.title)}>
+        return <div className="film-row" onClick={this.props.handleDetailsClick}>
             <FilmPoster posterPath={this.props.posterPath}/>
             <div className="film-summary">
                 <h1>{this.props.title}</h1>
