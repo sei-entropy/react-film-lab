@@ -18,7 +18,7 @@ render() {
         <FilmPoster posterUrl={posterUrl} title={title} />
 
         <div className="film-summary">
-        <Fave/>
+        <Fave onFaveToggle={() => this.props.onFaveToggle(film)} />
           <h1>{title}</h1>
           <p>{releaseYear}</p>
         </div>
