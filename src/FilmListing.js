@@ -3,20 +3,29 @@ import React, { Component } from "react";
 import FilmRow from "./FilmRow";
 
 export default class FilmList extends Component {
-constructor(props){
-  super(props);
-  this.state={
-    filter:'all',
-        };
-}
-  handleFilterClick =(filter)=>{
-    console.log("Setting filter to "+filter);
-  this.setState({
-filter:filter,
-  });
+  constructor(props) {
+    super(props);
+    this.state = {
+      filter: "all"
+    };
   }
+  handleFilterClick = filter => {
+    console.log("Setting filter to " + filter);
+    this.setState({
+      filter: filter
+    });
+  };
   render() {
-   
+    
+    const allFilm = this.props.films.map((film) => {
+      return (
+      <FilmRow
+      film={film}
+      key={film.id}
+      onFaveToggle={() => this.props.onFaveToggle(film)}
+      />
+    )
+    });
     //  Create a constant variable holding the pre-string
     //  for the database image url
     const getImg = "https://image.tmdb.org/t/p/w780";
@@ -31,157 +40,30 @@ filter:filter,
     return (
       // Main div for the film listing, with films h1 tag under it
       <div className="film-list">
-      <h1 className="section-title">FILMS</h1>
-      <div className="film-list-filters">
-      <div className={`film-list-filter ${this.state.filter === 'all' ? 'is-active' : ''}`} onClick={() => this.handleFilterClick('all')}>
-              ALL
-              <span className="section-count">{this.props.films.length}</span>
+        <h1 className="section-title">FILMS</h1>
+        <div className="film-list-filters">
+          <div
+            className={`film-list-filter ${
+              this.state.filter === "all" ? "is-active" : ""
+            }`}
+            onClick={() => this.handleFilterClick("all")}
+          >
+            ALL
+            <span className="section-count">{this.props.films.length}</span>
           </div>
-          <div className={`film-list-filter  ${this.state.filter === 'fave' ? 'is-active' : ''}`} onClick={() => this.handleFilterClick('fave')} >
-              FAVES
-              <span className="section-count">0</span>
+          <div
+            className={`film-list-filter  ${
+              this.state.filter === "fave" ? "is-active" : ""
+            }`}
+            onClick={() => this.handleFilterClick("fave")}
+          >
+            FAVES
+            <span className="section-count">0</span>
           </div>
+        </div>
+
+        {allFilms}
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-  
-      {allFilms}
-  </div>
     );
   }
 }
