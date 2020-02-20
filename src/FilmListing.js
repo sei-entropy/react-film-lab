@@ -3,50 +3,48 @@ import FilmRow from './FilmRow'
 
 export default class FilmListing extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            filters: 'all'
-        }
-        this.handleFilterClick = this.handleFilterClick.bind(this)
+            filter: "all"
+        };
     }
-    handleFilterClick(filter) {
-        console.log('Setting filter to', filter)
-        this.setState({
-            filters: filter
 
-        })
+    handleFilterClick = filter => {
+        this.setState({ filter: filter });
+    };
 
-    }
 
 
     render() {
-        // const faves = this.props.
-        // con
-        const show = []
-        const allFilms = this.props.films.map((film) => {
+
+        let show = []
+        let allFilms = this.props.films.map((film) => (
+
+            <FilmRow
+                film={film}
+                key={film.id}
+                onFaveToggle={() => this.props.onFaveToggle(film)}
+                handleDetailsClick={this.props.handleDetailsClick}
+                isFave={this.props.faves.includes(film)} />
+
+
+        ));
+
+        let favesFilms = this.props.faves.map((film, index) => {
             return (
                 <FilmRow
+                    handleDetailsClick={this.props.handleDetailsClick}
                     film={film}
-                    key={film.id}
+                    key={index}
+                    isFave={this.props.faves.includes(film)}
                     onFaveToggle={() => this.props.onFaveToggle(film)}
-                    handleDetailsClick={this.props.handleDetailsClick()}
-                    isFave={this.props.faves.includes(film)} />
+                />
+            );
+        });
 
-            )
-        })
-        const allFaves = this.props.faves.map((film) => {
-            return (
-                <FilmRow
-                    film={film}
-                    key={film.id}
-                    onFaveToggle={() => this.props.onFaveToggle(film)}
-                    handleDetailsClick={this.props.handleDetailsClick()}
-                    isFave={this.props.faves.includes(film)} />
-            )
-        })
-
-        this.state.filters === 'all' ? show = allFilms : show = allFaves
-
+        this.state.filter === "all"
+            ? (show = allFilms)
+            : (show = favesFilms);
 
 
 
@@ -70,7 +68,7 @@ export default class FilmListing extends React.Component {
 
                     >
                         <span > FAVES </span>
-                        <span className="section-count">0</span>
+                        <span className="section-count">{this.props.faves.length}</span>
                     </div>
                 </div>
 

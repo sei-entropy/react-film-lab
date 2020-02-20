@@ -13,29 +13,25 @@ export default class App extends Component {
       faves: [],
       current: {}
 
-    }
-    this.handleFaveToggle = this.handleFaveToggle.bind(this)
+    };
   }
   handleFaveToggle = (film) => {
 
-    const faves = this.state.faves.slice()
-    const filmIndex = faves.indexOf(film)
+    let faves = [...this.state.faves]
+    let filmIndex = faves.indexOf(film)
 
-    if (filmIndex > -1) {
+    if (filmIndex !== -1) {
       faves.splice(filmIndex, 1);
 
-      console.log('Removing reom faves' + film.title)
+      console.log(`Removing ${film.title} From Favors`)
     } else {
 
       faves.push(film);
 
-      console.log('Adding to faves' + film.title)
+      console.log(`Adding ${film.title} To Favors`)
     }
 
-    this.setState({
-      faves
-      // The above is exactly the same as this.setState({faves: faves})
-    })
+    this.setState({ faves })
 
   }
   handleDetailsClick = (film) => {
@@ -46,15 +42,18 @@ export default class App extends Component {
 
 
     return (
-      <div className="App">
-        <div className="film-library">
-          <FilmListing films={TMDB.films}
-            faves={this.state.faves}
-            handleDetailsClick={this.handleFaveToggle} />
-          <FilmDetails film={this.state.current} />
 
-        </div>
+      <div className="film-library">
+        <FilmListing
+          films={this.state.films}
+          faves={this.state.faves}
+          handleDetailsClick={this.handleDetailsClick}
+          onFaveToggle={this.handleFaveToggle} />
+
+        <FilmDetails film={this.state.current} />
+
       </div>
+
     )
   }
 }
