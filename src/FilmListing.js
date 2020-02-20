@@ -23,7 +23,11 @@ export default class FilmListing extends React.Component {
     render(){
         // passing each film's film_id as a key and the film itself to display them as a row
         const allFilms = this.props.films.map((film)=>{
-            return <FilmRow key={film.id} film={film} />
+            return <FilmRow key={film.id} film={film} onFaveToggle={() => this.props.onFaveToggle(film)} isFave={this.props.faves.includes(film)} handleDetailsClick={this.props.handleDetailsClick}/>
+        });
+
+        const allFaves = this.props.faves.map((film)=>{
+            return <FilmRow key={film.id} film={film} onFaveToggle={() => this.props.onFaveToggle(film)} isFave={this.props.faves.includes(film)} handleDetailsClick={this.props.handleDetailsClick}/>
         });
 
         return(
@@ -40,11 +44,11 @@ export default class FilmListing extends React.Component {
                     <div className={`film-list-filter ${this.state.filter === 'faves' ? 'is-active' : ''}`} onClick={()=>this.handleFilterClick('faves')}>
                         FAVES
                         {/* Displaying number of favorited films */}
-                        <span className="section-count">0</span>
+                        <span className="section-count">{this.props.faves.length}</span>
                     </div>
                 </div>
                 {/* Displaying the films */}
-                <h1>{allFilms}</h1>
+                <h1>{this.state.filter === 'all'? allFilms : allFaves}</h1>
             </div>
         )
     }
