@@ -22,11 +22,21 @@ export default class FilmListing extends React.Component{
   }
 
     render(){
-    const allFilms = this.props.filmsList.map(function(film){
-        return <FilmRow image={film.poster_path} title={film.title} 
-        date={film.release_date} 
+    // const allFilms = this.props.filmsList.map(function(film){
+    //     return <FilmRow image={film.poster_path} title={film.title} 
+    //     date={film.release_date} 
         
-        key={film.id} />   
+    //     key={film.id} />   
+    // })
+    const allFilms = this.props.films.map((film) => {
+      return (
+      <FilmRow
+      film={film}
+      key={film.id}
+      isFave={this.props.faves.includes(film)}
+      onFaveToggle={() => this.props.onFaveToggle(film)}
+      />
+    )
     })
   
         return (
@@ -36,11 +46,11 @@ export default class FilmListing extends React.Component{
     <div className="film-list-filters">
         <div className={`film-list-filter ${this.state.filter === 'all' ? 'is-active' : ''}`}  onClick={() => this.handleFilterClick('All')}>
             ALL
-            <span className="section-count">{this.props.filmsList.length}</span>
+            <span className="section-count">{this.props.films.length}</span>
         </div>
         <div className={`film-list-filter ${this.state.filter === 'faves' ? 'is-active' : ''}`}  onClick={() => this.handleFilterClick('faves')}>
             FAVES
-            <span className="section-count">0</span>
+            <span className="section-count">{this.props.faves.length}</span>
         </div>
     </div>
 
