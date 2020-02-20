@@ -39,9 +39,16 @@ export default class App extends React.Component{
 
     this.setState({
              faves:faves
-            //  isFave: !this.state.isFave
            })
 
+    }
+    handleDetailsClick=(e)=>{
+        console.log("Fetching details for :"+e.title);
+
+        // this.setState({
+        //     current:film
+        //   })
+        
     }
 
 
@@ -50,15 +57,13 @@ export default class App extends React.Component{
         return (
             <div className="film-library">
             <FilmListing  filmName={"FILMS"}
-            // filmsList={TMDB.films} 
             films={this.state.films}
             faves={this.state.faves}
-            // onFaveToggle={this.state.onFaveToggle}
             onFaveToggle={this.handleFaveToggle}
+            onDetails={this.handleDetailsClick}
 
             />
             <FilmDetails  detailsName={"DETAILS"} 
-            // filmsList={TMDB.films}
             film={this.state.current}
             />
 
