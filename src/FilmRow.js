@@ -9,9 +9,10 @@ export default class FilmRow extends Component {
   }
 
   render() {
+    const getImg = "https://image.tmdb.org/t/p/w780";
     // Declaring variables to hold the props
     // Create the Url for the poster
-    const posterUrl = this.props.getImg + this.props.film.poster_path;
+    const posterUrl = getImg + this.props.film.poster_path;
     // Get the Film title
     const title = this.props.film.title;
     // Get the release date in a date object
@@ -32,11 +33,14 @@ export default class FilmRow extends Component {
         {/* Create a div about the movie summary containing the title
         and release year */}
         <div className="film-summary">
+          <Fave
+            onFaveToggle={this.props.onFaveToggle}
+            isFave={this.props.isFave}
+          />
           <h1>{title}</h1>
 
           <p>{releaseYear}</p>
         </div>
-        <Fave />
       </div>
     );
   }
