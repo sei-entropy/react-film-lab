@@ -3,12 +3,14 @@ import React from 'react'
 export default class Fave extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { isFave: false }
+        this.state = {}
     }
+
     handleClick = (e) => {
         e.stopPropagation()
-        this.setState({ isFave: !this.state.isFave })
+        this.props.onFaveToggle()
     }
+
     render() {
         const messageIsFave = this.state.isFave ? 'remove_from_queue' : 'add_to_queue'
         return (
