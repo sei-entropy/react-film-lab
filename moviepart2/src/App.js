@@ -1,25 +1,44 @@
-import React from "react";
-// import the child components
-import FilmListing from "./FilmListing";
-import FilmDetails from "./FilmDetails";
+import React, { Component } from 'react';
+import './App.css';
+import FilmDetails from './FilmDetails.js';
+import FilmListing from './FilmListing.js';
+import TMDB from './TMDB.js';
 
-// import the film database
-import TMDB from "./TMDB";
-// import the style
-import "./App.css";
+class App extends Component {
 
-function App() {
-  return (
-    // Create a div to hold the film library
-    <div className="film-library">
-      {/* Add the two child components and pass the films
-       from the database as props */}
+  constructor(props){
+     super(props)
+     
+this.state={films:TMDB.films,
+faves:[],
+current:{}
 
-      <FilmListing films={TMDB.films} />
+}
+this.handleFaveToggle = this.handleFaveToggle.bind(this)
+  }
+  handleFaveToggle=(Film)=>{
+    const filmIndex=0;
+    filmIndex=(this.state.faves).indexOf(Film)
+    if ((this.state.faves [filmIndex]).includes(Film))
+    (this.state.faves).pop()
+    else 
+    (this.state.faves).push(Film)
+  
+  
+  
+  }
 
-      <FilmDetails films={TMDB.films} />
-    </div>
-  );
+
+  render() {
+    return (
+      <div className="App" >
+        <div className="film-library">
+          <FilmListing films={TMDB.films} />
+          <FilmDetails films={TMDB.films} />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
