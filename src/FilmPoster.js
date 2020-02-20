@@ -6,11 +6,10 @@ export default class FilmPoster extends React.Component{
         super(props);
 
     }
-
-    render() {
-        const posterUrl = "https://image.tmdb.org/t/p/w780";
-        return (
-            <img src={posterUrl+this.props.films.poster_path} alt="" />
-        );
+    state = {  }
+    render() { 
+        let posterUrl = "https://image.tmdb.org/t/p/w780/" 
+        + this.props.film.poster_path;
+        return ( <img src={posterUrl} alt="" /> );
     }
 }
