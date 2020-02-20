@@ -1,0 +1,17 @@
+Family Tree:
+
+
+                                Index
+                                  |
+                                 App
+                    ______________|______________
+                   |                             |
+                   |                             |
+              FilmListing                   FilmDetails
+                   |                             
+                   |
+                FilmRow
+     ______________|______________
+    |                             |
+    |                             |
+FilmPoster                      Fave
