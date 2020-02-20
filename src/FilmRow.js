@@ -1,57 +1,35 @@
 import React, { Component } from "react";
-// import the FilmRow child component
-import FilmRow from "./FilmRow";
+// import filmPost child component
+import FilmPoster from "./FilmPoster";
+import Fave from "./Fave";
 
-export default class FilmList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      filter: "all"
-    };
-  }
-
-  handleFilterClick = filter => {
-    this.setState({ filter: filter });
-  };
-
+export default class FilmRow extends Component {
   render() {
-    //  Create a constant variable holding the pre-string
-    //  for the database image url
-    const getImg = "https://image.tmdb.org/t/p/w780";
-
-    //  Create a constant variable array holding Film Row components
-    //  it creates components by mapping through the films array from
-    //  props then pass the props to FilmRow Child component
-    const allFilms = this.props.films.map((film, index) => (
-      <FilmRow film={film} key={film.id} getImg={getImg} />
-    ));
+    // Declaring variables to hold the props
+    // Create the Url for the poster
+    const posterUrl = this.props.getImg + this.props.film.poster_path;
+    // Get the Film title
+    const title = this.props.film.title;
+    // Get the release date in a date object
+    const releaseDate = new Date(this.props.film.release_date);
+    // Get the year from the release date
+    const releaseYear = releaseDate.getFullYear();
 
     return (
-      // Main div for the film listing, with films h1 tag under it
-      <div className="film-list">
-        <h1 className="section-title">FILMS</h1>
-        <div className="film-list-filters">
-          <div
-            className={`film-list-filter ${
-              this.state.filter === "all" ? "is-active" : ""
-            }`}
-            onClick={() => this.handleFilterClick("all")}
-          >
-            ALL
-            <span className="section-count">{this.props.films.length}</span>
-          </div>
-          <div
-            onClick={() => this.handleFilterClick("faves")}
-            className={`film-list-filter ${
-              this.state.filter === "faves" ? "is-active" : ""
-            }`}
-          >
-            FAVES
-            <span className="section-count">0</span>
-          </div>
+      // Create a main div holding each row
+      <div className="film-row">
+        {/* Create a child component holding the poster, 
+        and passing the image and title as props */}
+        <FilmPoster posterUrl={posterUrl} title={title} />
+
+        {/* Create a div about the movie summary containing the title
+        and release year */}
+        <div className="film-summary">
+          <h1>{title}</h1>
+
+          <p>{releaseYear}</p>
         </div>
-        {/* All films FilmRow components array */}
-        {allFilms}
+        <Fave/>
       </div>
     );
   }
