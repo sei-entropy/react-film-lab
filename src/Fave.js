@@ -5,21 +5,21 @@ export default class Fave extends React.Component {
         super(props)
 
         this.state = {
-            isFave: false
+
+
         }
     }
 
     handleClick = (e) => {
-        console.log("handling Fave click!");
+        console.log("handling Fave click!", this.props.isFave);
         e.stopPropagation()
 
-        this.setState({
-            isFave: !this.state.isFave
-        })
+        this.props.onFaveToggle()
 
     }
     render() {
-        const isFave = (this.state.isFave) ? 'remove_from_queue' : 'add_to_queue'
+
+        const isFave = (this.props.isFave) ? 'remove_from_queue' : 'add_to_queue'
         return (
             <div
                 className={`film-row-fave ${isFave}`} >
