@@ -16,10 +16,7 @@ class FilmListing extends React.Component {
         });
     };
 
-    render() {
-        const filmsToDisplay =
-            this.state.filter === "all" ? this.props.films : this.props.faves;
-
+    generateFilmsList = filmsToDisplay => {
         const allFilms = filmsToDisplay.map(film => {
             return (
                 <FilmRow
@@ -31,6 +28,15 @@ class FilmListing extends React.Component {
                 />
             );
         });
+
+        return allFilms;
+    };
+
+    render() {
+        const allFilms =
+            this.state.filter === "all"
+                ? this.generateFilmsList(this.props.films)
+                : this.generateFilmsList(this.props.faves);
 
         return (
             <div className="film-list">
