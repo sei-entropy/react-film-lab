@@ -14,11 +14,11 @@ export default class FilmRow extends React.Component {
 
         return(
 
-            <div className="film-row" onClick={() => this.handleDetailsClick('film')}>
+            <div className="film-row" onClick={() => this.handleDetailsClick(this.props.film)}>
 
                 <FilmPoster film={this.props.film}/>
                 <div className="film-summary">
-                <Fave/>
+                <Fave onFaveToggle = {this.props.onFaveToggle} isFave = {this.props.isFave}/>
                     <h1>{this.props.film.title}</h1>
                     <p>{ year.getFullYear()}</p>
 
