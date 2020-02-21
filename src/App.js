@@ -1,48 +1,72 @@
-import React from 'react';
-import './App.css';
-import FilmDetails from './Film-details.js';
-import FilmListing from './Film-list.js';
-import TMDB from './TMDB.js';
+import React, { Component } from "react";
+// import the child components
+import FilmListing from "./Film-list";
+import FilmDetails from "./Film-details";
+import axios from "axios";
 
-class App extends React.Component {
-  state = { 
-    films: TMDB.films,
-    faves: [],
-    current: {}
-   }
+// import the film database
+import TMDB from "./TMDB";
+// import the style
+import "./App.css";
 
-  handleFaveToggle = (film) =>{
-    
-    const faves = this.state.faves.slice(0, this.state.faves.length);
-    const filmIndex = faves.indexOf(film);
-    if(filmIndex >= 0){
-       
-        faves.splice(filmIndex, 1);
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            films: TMDB.films,
+            faves: [],
+            current: {}
+        };
     }
 
-    else if(filmIndex === -1){
-     
-      faves.push(film);
-    }
-    this.setState({faves});
-  }
+    handleFaveToggle = (film) => {
+        const faves = [...this.state.faves];
+        const filmIndex = faves.indexOf(film);
 
-  handleDetailsClick = (film) =>{
-    this.setState({current: film});
+        if (filmIndex !== -1) {
+            faves.splice(filmIndex, 1);
+            console.log(`Removing ${film.title} From Favors`);
+        } else {
+            faves.push(film);
+            console.log(`Adding ${film.title} To Favors`);
         }
+        this.setState({ faves });
+    };
 
-  render() { 
 
-    return ( <div className="App">
-    <div className="film-library">
-        <FilmListing films={this.state.films} 
-               faves={this.state.faves} 
-        onFaveToggle={this.handleFaveToggle} 
-        onDetailsClick={this.handleDetailsClick}/>
-        <FilmDetails film={this.state.current}  />
-        </div>
-  </div> );
-  }
+
+
+
+
+    handleDetailsClick = (film) => {
+        console.log("Fetching details for", film.title);
+        const url = `https://api.themoviedb.org/3/movie/${film.id}?api_key=${TMDB.api_key}&append_to_response=videos,images&language=en`
+        fetch(url).then(response => {
+            response.json().then(data => {
+                this.setState({current: data});
+            })
+        })
+    }
+
+    render() {
+        // console.log(this.state.current); //for testing
+        return (
+            // Create a div to hold the film library
+            <div className="film-library">
+                {/* Add the two child components and pass the films
+       from the database as props */}
+
+                <FilmListing
+                    handleDetailsClick={this.handleDetailsClick}
+                    films={this.state.films}
+                    faves={this.state.faves}
+                    onFaveToggle={this.handleFaveToggle}
+                />
+
+                <FilmDetails film={this.state.current} />
+            </div>
+        );
+    }
 }
 
 export default App;

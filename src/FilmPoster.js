@@ -1,15 +1,14 @@
 import React from 'react';
-import FilmRow from "./FilmRow";
 
-export default class FilmPoster extends React.Component{
-    constructor(props) {
-        super(props);
+export default function render(props) {
 
-    }
-    state = {  }
-    render() { 
-        let posterUrl = "https://image.tmdb.org/t/p/w780/" 
-        + this.props.film.poster_path;
-        return ( <img src={posterUrl} alt="" /> );
-    }
+
+        return (
+            //  main div for the image, it gets the information
+            //  from the parent props
+            <div>
+                <img src={props.posterUrl} alt={props.title} />
+            </div>
+        );
+
 }
