@@ -1,48 +1,52 @@
-import React from "react";
-import FilmRow from "./FilmRow";
+import React  from 'react'
+import FilmRow from './FilmRow';
 
 
-export default class FilmListing extends React.Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      filter: 'all'
+class FilmListing extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            filter: 'all',
+        };
     }
-  }
+    handleFilterClick = (filter) => {
+        console.log('Setting filter to ' + filter);
+        this.setState({
+            filter: filter,
+        });
+    }
 
-  handleFilterClick = (filter) => {
-    this.setState({ filter: filter })
-  }
+    render() {
+        const allFilms = this.props.films.map((film, index) => {
+            return (
+                <FilmRow handleDetailsClick={() => this.props.handleDetailsClick(film)} isFave={(this.props.faves.includes(film) <= 0) ? false : true} onFaveToggle={() => this.props.onFaveToggle(film)} title={film.title} poster_path={film.poster_path} key={index} year={(new Date(film.release_date)).getFullYear()} />
 
-  render() {
-    let showFilms = [];
-    const allFilms = this.props.movies.films.map((item, index) => {
-      return <FilmRow handleDetailsClick={this.props.handleDetailsClick} film={item} key={index} isFave={this.props.faves.includes(item)} onFaveToggle={() => this.props.onFaveToggle(item)} />
-    })
-    const favesFilms = this.props.faves.map((item, index) => {
-      return <FilmRow handleDetailsClick={this.props.handleDetailsClick} film={item} key={index} isFave={this.props.faves.includes(item)} onFaveToggle={() => this.props.onFaveToggle(item)} />
-    })
+            )
+        })
+        const allFaves = this.props.faves.map((film, index) => {
+            return (
+                <FilmRow handleDetailsClick={() => this.props.handleDetailsClick(film.title)} isFave={(this.props.faves.includes(film) <= 0) ? false : true} onFaveToggle={() => this.props.onFaveToggle(film)} title={film.title} poster_path={film.poster_path} key={index} year={(new Date(film.release_date)).getFullYear()} />
 
-    this.state.filter === 'all' ? showFilms = allFilms : showFilms = favesFilms
+            )
+        })
+        return (
+            <div className="film-list">
+                <h1 className="section-title">FILMS</h1>
+                <div className="film-list-filters">
+                    <div className={"film-list-filter " + (this.state.filter === "all" ? "is-active" : "")} onClick={() => this.handleFilterClick('all')}>
+                        ALL
+            <span className="section-count">{this.props.films.length} </span>
+                    </div>
+                    <div className={"film-list-filter " + (this.state.filter === "faves" ? "is-active" : "")} onClick={() => this.handleFilterClick('faves')}>
+                        FAVES
+            <span className="section-count">{this.props.faves.length}</span>
+                    </div>
+                </div>
 
-    return (
-      <div className="film-list">
-        <h1 className="section-title">FILMS</h1>
-        <div className="film-list-filters">
-          <div onClick={() => this.handleFilterClick('all')} className={`film-list-filter ${this.state.filter === 'all' ? 'is-active' : ''}`}>
-            ALL
-        <span className="section-count">{this.props.movies.films.length}</span>
-          </div>
-
-          <div onClick={() => this.handleFilterClick('faves')} className={`film-list-filter ${this.state.filter === 'faves' ? 'is-active' : ''}`}>
-            FAVES
-        <span className="section-count">{this.props.faves.length}</span>
-          </div>
-        </div>
-
-        {showFilms}
-      </div>
-    );
-  }
+                {(this.state.filter === 'all') ? allFilms : allFaves}
+            </div>
+        );
+    }
 }
+
+export default FilmListing;
