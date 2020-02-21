@@ -15,27 +15,39 @@ export default class FilmList extends Component {
       filter: filter
     });
   };
+
   render() {
+    let showFilms =[];
     
-    const allFilm = this.props.films.map((film) => {
-      return (
-      <FilmRow
-      film={film}
-      key={film.id}
-      onFaveToggle={() => this.props.onFaveToggle(film)}
-      />
-    )
-    });
-    //  Create a constant variable holding the pre-string
-    //  for the database image url
-    const getImg = "https://image.tmdb.org/t/p/w780";
 
     //  Create a constant variable array holding Film Row components
     //  it creates components by mapping through the films array from
     //  props then pass the props to FilmRow Child component
     const allFilms = this.props.films.map((film, index) => (
-      <FilmRow key={film.id} getImg={getImg} film={film} />
+      <FilmRow 
+          handleDetailsClick ={this.props.handleDetailsClick}
+          film={film}
+          key={index}
+          isFave={this.props.faves.includes(film)}
+          onFaveToggle={()=>this.props.onFaveToggle(film)}
+           />
     ));
+    const favesFilm = this.props.faves.map((film,index) => {
+      return (
+        <FilmRow
+          handleDetailsClick={this.props.handleDetailsClick}
+          film={film}
+          key={index}
+          isFave={this.props.faves.includes(film)}
+          onFaveToggle={() => this.props.onFaveToggle(film)}
+        />
+      );
+    });
+    
+
+    this.state.filter === "all"
+      ? (showFilms = allFilms)
+      : (showFilms = favesFilm);
 
     return (
       // Main div for the film listing, with films h1 tag under it
@@ -61,8 +73,7 @@ export default class FilmList extends Component {
             <span className="section-count">0</span>
           </div>
         </div>
-
-        {allFilms}
+        {showFilms}
       </div>
     );
   }
