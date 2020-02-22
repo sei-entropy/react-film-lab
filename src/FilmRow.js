@@ -5,6 +5,9 @@ class FilmRow extends React.Component{
  
     handleDetailsClick =  (film) => {
         console.log(` Fetching details for ${film}`)
+    
+    
+    
     }
 
     render(){

@@ -32,6 +32,12 @@ class FilmListing extends React.Component{
     return (   // Main div for the film listing, with films h1 tag under it
     <div className="film-list">
       <h1 className="section-title">FILMS</h1>
+      <div className="film-detail">
+  <p>
+    <i className="material-icons">subscriptions</i>
+    <span>No film selected</span>
+  </p>
+</div>
       <div className="film-list-filters">
         <div
           className={`film-list-filter ${
