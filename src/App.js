@@ -32,21 +32,24 @@ class App extends Component {
         }
         this.setState({ faves });
     };
-
-
-
-
-
-
+    
     handleDetailsClick = (film) => {
         console.log("Fetching details for", film.title);
         const url = `https://api.themoviedb.org/3/movie/${film.id}?api_key=${TMDB.api_key}&append_to_response=videos,images&language=en`
-        fetch(url).then(response => {
-            response.json().then(data => {
-                this.setState({current: data});
-            })
+        axios({
+            method: 'get',
+            url: url
         })
-    }
+            .then(res => {
+                console.log('RESPONSE: ', res);
+                // console.log('DATA: ', res.data);
+                this.setState({current: res.data});
+            })
+            .catch(err => {
+                console.log('ERROR: ', err);
+            });
+    };
+
 
     render() {
         // console.log(this.state.current); //for testing
