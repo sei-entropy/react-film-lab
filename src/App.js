@@ -3,6 +3,7 @@ import TMDB from './TMDB.js'
 import FilmListing from './FilmListing.js';
 import FilmDetails from './FilmDetails.js';
 import './App.css';
+import axios from 'axios'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ export default class App extends React.Component {
       films : TMDB.films, 
       faves: [], 
       current : { }, 
-      isFave : false,
+
     }
     this.handleFaveToggle = this.handleFaveToggle.bind(this);
   }
@@ -20,34 +21,60 @@ export default class App extends React.Component {
   
 
   handleFaveToggle = (film) => { 
-    const faves = this.state.faves.slice() ;
+    const faves = [...this.state.faves] ;
     const filmIndex = faves.indexOf(film); 
 
-    if ( filmIndex >= 0 ) { 
-      console.log (`Removing ${ film } from faves `) 
+    if ( filmIndex !== -1 ) { 
+      faves.splice(filmIndex, 1);
+      console.log (`Removing ${ film.title } from faves `) 
     }
     else { 
-      console.log (`addind ${ film } to the faves`)
+      faves.push(film)
+      console.log (`addind ${ film.title } to the faves`)
     }
    
     this.setState({ faves 
     }) // call for the change to happen . . .
   
   }
-  
+
+  handleDetailsClick = (film) => {
+    
+    const url = `https://api.themoviedb.org/3/movie/${film.id}?api_key=${TMDB.api_key}&append_to_response=videos,images&language=en`
+   
+    axios({
+        method: 'get',
+        url: url
+    })
+        .then(res => {
+           
+
+            this.setState({current: res.data});
+        })
+        .catch(err => {
+            console.log('ERROR: ', err);
+        });
+};
+
+
+
   render() 
   { 
 
 
     return  (
-    <div className="App" >
+    
       <div className='film-library'>   
-      < FilmListing films={ this.state.films } 
-      faves={this.state.faves} />
+      < FilmListing
+             handleDetailsClick={this.handleDetailsClick}
+             films={this.state.films}
+             faves={this.state.faves}
+             onFaveToggle={this.handleFaveToggle}
+             />
       
-    <FilmDetails films={ this.state.films } />
+    <FilmDetails film={ this.state.current } />
     </div>
-    </div>
+  
     )
   }
 }

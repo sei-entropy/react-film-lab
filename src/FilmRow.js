@@ -5,9 +5,7 @@ import Fave from './Fave.js'
 
 export default class FilmRow extends React.Component { 
   handleDetailsClick = (film) => { 
-    console.log ('Fetching details',this.props.title)
-
-
+  console.log ('Fetching details',this.props.title)
   }
   
   
@@ -18,13 +16,16 @@ export default class FilmRow extends React.Component {
     const year = new Date(this.props.year_relase)
     const date= year.getFullYear()
 
-    return <div className="film-row" onClick={this.handleDetailsClick}>
+    return <div className="film-row"  onClick={() => this.handleDetailsClick(this.props.film)}
+    >
   <FilmPoster poster={this.props.poster}/>
+    <div className="film-summary" >
+    <h1> {this.props.title} </h1>
+      <p> {date} </p>
 
-    <div className="film-summary">
-      <h1>{this.props.title}</h1>
-      <p>{date}</p>
-      <Fave />
+      <Fave  onFaveToggle={this.props.onFaveToggle}
+            isFave={this.props.isFave} />
+
     </div>
   </div>
   }
