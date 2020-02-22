@@ -16,19 +16,38 @@ export default class FilmListing extends React.Component{
     })
   }
   render(){
-    const allFilms = this.props.movie.films.map((film, index) => {
-        return <FilmRow 
-        film = {film} 
-        key ={index}/>
-    })
+    let show = [];
+    const allFilms = this.props.movie.films.map((film, index) => (
+      <FilmRow
+        handleDetailsClick={this.props.handleDetailsClick}
+        film={film}
+        key={index}
+        isFave={this.props.faves.includes(film)}
+        onFaveToggle={() => this.props.onFaveToggle(film)}
+      />
+    ));
+    const favesFilms = this.props.faves.map((film, index) => {
+      return (
+        <FilmRow
+          handleDetailsClick={this.props.handleDetailsClick}
+          film={film}
+          key={index}
+          isFave={this.props.faves.includes(film)}
+          onFaveToggle={() => this.props.onFaveToggle(film)}
+        />
+      );
+    });
+    this.state.filter === "all"
+      ? (show = allFilms)
+      : (show = favesFilms);
 
     return(
       <div className="film-list">
       <h1 className="section-title">FILMS</h1>
-
       <div className="film-list-filters">
-      <div onClick={() => this.handleFilterClick('all')}  
-             className={`film-list-filter ${this.state.filter === 'all' ? 'is-active' : ''}`}>
+
+      <div className={`film-list-filter ${this.state.filter === "all" ? "is-active" : ""}`}
+            onClick={() => this.handleFilterClick("all")}>
           ALL
           <span className="section-count">{this.props.movie.films.length}</span>
           </div>
@@ -36,11 +55,11 @@ export default class FilmListing extends React.Component{
       <div onClick={() => this.handleFilterClick('faves')} 
       className={`film-list-filter ${this.state.filter === 'faves' ? 'is-active' : ''}`}>
           FAVES
-      <span className="section-count">0</span>
+      <span className="section-count">{this.props.faves.length}</span>
       </div>
       </div>
 
-    {allFilms}
+      {show}
 
     </div>
       );

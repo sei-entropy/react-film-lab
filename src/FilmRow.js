@@ -12,12 +12,15 @@ export default class FilmRow extends React.Component {
 
         return(
 
-            <div className="film-row" onClick={ () => this.handleFilterClick(this.props.film.title)}>
+            <div className="film-row" 
+            onClick={ () => this.handleFilterClick(this.props.film.title)}>
 
                 <FilmPoster film={this.props.film}/>
             
                 <div className="film-summary">
-                <Fave/>
+                <Fave onFaveToggle={this.props.onFaveToggle}
+                 isFave={this.props.isFave}/>
+
                 <h1>{this.props.film.title}</h1>
                 <p>{ movieYears.getFullYear()}</p>
                 </div>
@@ -25,4 +28,3 @@ export default class FilmRow extends React.Component {
         );
     }
 }
-

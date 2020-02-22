@@ -7,4 +7,3 @@ export default class FilmPoster extends React.Component{
         )
     }
 }
-
