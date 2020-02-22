@@ -1,9 +1,7 @@
 import React from 'react';
 
-export default class FilmPoster extends React.Component{
-    render(){
+export default function FilmPoster(props){
         return(
-            <img src={`https://image.tmdb.org/t/p/w780/${this.props.film.poster_path}`} alt="" />
+            <img src={`https://image.tmdb.org/t/p/w780/${props.film.poster_path}`} alt="" />
         )
     }
-}
