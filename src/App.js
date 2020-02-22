@@ -1,8 +1,12 @@
+//TODO in Part4 need network to install things,
+// Axios API  || npm install axios or use fetch?
+// dotenv API Key file || npm install --save dotenv
+
 import React from 'react';
-import './App.css';
 import FilmListing from './FilmListing.js';
 import FilmDetails from './FilmDetails.js';
 import TMDB from './TMDB.js';
+import './App.css';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -25,21 +29,31 @@ export default class App extends React.Component {
   }
 
   handleDetailsClick = (film) => {
-    this.setState({ current: film })
+    const url = `https://api.themoviedb.org/3/movie/${film.id}?api_key=${TMDB.api_key}&append_to_response=videos,images&language=en`
+
+    // this.setState({ current: film })
+
+    fetch(url).then(response => response.json()).then(data => {
+      if (data.error_message) {
+        throw new Error(data.error_message);
+      }
+      this.setState({ current: data })
+    }).then(null, error => {
+      alert(error)
+    });
+
   }
 
   render() {
     return (
-      <div className='App' >
-        <div className='film-library'>
-          <FilmListing
-            handleDetailsClick={this.handleDetailsClick}
-            movies={this.state.films}
-            faves={this.state.faves}
-            onFaveToggle={this.handleFaveToggle} />
-          <FilmDetails
-            film={this.state.current} />
-        </div>
+      <div className='film-library'>
+        <FilmListing
+          handleDetailsClick={this.handleDetailsClick}
+          movies={this.state.films}
+          faves={this.state.faves}
+          onFaveToggle={this.handleFaveToggle} />
+        <FilmDetails
+          film={this.state.current} />
       </div>
     )
   }
