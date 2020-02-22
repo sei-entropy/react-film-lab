@@ -3,6 +3,7 @@ import './App.css';
 import TMDB from './TMDB';
 import FilmListing from './FilmListing';
 import FilmDetails from './FilmDetails';
+import axios from "axios"
 
 export default class App extends React.Component {
   constructor(props){
@@ -32,25 +33,30 @@ export default class App extends React.Component {
   }
 
   // A function which mainly displays the title of the film on the console
-  handleDetailsClick = () => {
-      console.log('Fetching details for', this.state.current);
-  }
+  handleDetailsClick = (film) => {
+    const url = `https://api.themoviedb.org/3/movie/${film.id}?api_key=${TMDB.api_key}&append_to_response=videos,images&language=en`;
+    
+    axios({
+      method: 'GET',
+      url: url
+    }).then(response => {
+      console.log(response) // take a look at what you get back!
+      console.log(`Fetching details for ${film.title}`);
+      this.setState({ current: response.data })
+    });
+  };
 
   render() {
-    // Reading tmdb films
-    const tmdbFilms = TMDB.films;
     return ( 
       // <div className = "film-library" >
       //   {/* Calling components and passing imported films as props */}
       //   <FilmListing films={tmdbFilms} />
       //   <FilmDetails films={tmdbFilms} />
       // </div>
-      <div className="App" >
       <div className="film-library">
         <FilmListing films={this.state.films} faves={this.state.faves} onFaveToggle={this.handleFaveToggle} handleDetailsClick={this.handleDetailsClick}/>
         <FilmDetails films={this.state.films} film={this.state.current}/>
       </div>
-    </div>
     );
   };
 }
