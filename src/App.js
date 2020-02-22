@@ -18,6 +18,8 @@ class App extends Component {
     };
   }
 
+
+
   handleFaveToggle = film => {
     const faves = [...this.state.faves];
     const filmIndex = faves.indexOf(film);

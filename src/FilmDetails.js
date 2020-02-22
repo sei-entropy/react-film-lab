@@ -10,5 +10,6 @@ export default class FilmDetails extends Component {
                 {detail}
             </div>
         )
+
     }
 }

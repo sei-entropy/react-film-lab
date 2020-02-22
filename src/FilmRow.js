@@ -21,6 +21,7 @@ export default class FilmRow extends Component {
                 onClick={() => this.handleDetailsClick(this.props.film)}
             >
 
+
                 <FilmPoster posterUrl={posterUrl} title={title} />
 
                 <div className="film-summary">

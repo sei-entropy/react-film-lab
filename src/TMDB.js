@@ -9,6 +9,7 @@ const TMDB = {
       "overview": "In a small town in Maine, seven children known as The Losers Club come face to face with life problems, bullies and a monster that takes the shape of a clown called Pennywise.",
       "release_date": "2017-09-05"
     },
+
     {
       "id": 343668,
       "title": "Kingsman: The Golden Circle",
