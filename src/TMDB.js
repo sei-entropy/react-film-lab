@@ -1,5 +1,5 @@
 const TMDB = {
-  api_key: '<REPLACE_THIS_WITH_TMDB_API_KEY>',
+  api_key: '<process.env.REACT_APP_TMDB_API_KEY>',
   films: [
     {
       "id": 346364,
@@ -9,6 +9,7 @@ const TMDB = {
       "overview": "In a small town in Maine, seven children known as The Losers Club come face to face with life problems, bullies and a monster that takes the shape of a clown called Pennywise.",
       "release_date": "2017-09-05"
     },
+
     {
       "id": 343668,
       "title": "Kingsman: The Golden Circle",
