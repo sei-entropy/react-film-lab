@@ -6,6 +6,7 @@ import FilmDetails from "./FilmDetails";
 import TMDB from "./TMDB";
 // import the style
 import "./App.css";
+import axios from "axios"
 
 class App extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class App extends Component {
       current: {}
     };
   }
+  
   handleFaveToggle = film => {
     const faves = [...this.state.faves];
     const filmIndex = faves.indexOf(film);
@@ -29,10 +31,20 @@ class App extends Component {
     this.setState({ faves });
   };
   handleDetailsClick = film => {
-    this.setState({ current: film });
+    const url = `https://api.themoviedb.org/3/movie/${film.id}?api_key=${TMDB.api_key}&append_to_response=videos,images&language=en`;
+    axios({
+      method: 'GET',
+      url: url
+    }).then(response => {
+      console.log(response) // take a look at what you get back!
+      console.log(`Fetching details for ${film.title}`);
+      this.setState({ current: response.data })
+    })
+    //this.setState({ current: film });
     console.log(film);
   };
   render() {
+    
     return (
       // Create a div to hold the film library
       <div className="film-library">
