@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import filmPost child component
 import FilmPoster from "./FilmPoster";
 
 export default class Fave extends Component {
