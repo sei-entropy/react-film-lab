@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
 const TMDB = {
   api_key: '<REPLACE_THIS_WITH_TMDB_API_KEY>',
   films: [
