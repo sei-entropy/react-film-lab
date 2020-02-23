@@ -1,14 +1,13 @@
-import React  , { Component }from 'react';
+import React from 'react';
+//T2s1 Replace the class/extends with a function
 
-export default class FilmPoster extends Component{
+export default function FilmPoster(props) {
 
-    render() {
-        return (
-          //  main div for the image, it gets the information
-          //  from the parent props
-          <div>
-            <img src={this.props.posterUrl} alt={this.props.title} />
-          </div>
-        );
-      }
-    }
+  return (
+    //  main div for the image, it gets the information
+    //  from the parent props
+    <div>
+      <img src={props.posterUrl} alt={props.title} />
+    </div>
+  );
+}
